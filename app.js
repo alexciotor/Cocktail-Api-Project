@@ -22,7 +22,9 @@ const section = get('.section-center')
 
 
 const drinks =  drink.map(item=>{
-
+if(!item){
+    section.innerHTML ='No Item to display'
+}
     const {idDrink:id,strDrink:name, strDrinkThumb:image}=item
     return ` <a href="single-drink.html"> <article class="article" data-id="${id}" > <img src="${image}" alt="">
    

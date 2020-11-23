@@ -58,3 +58,59 @@ a {
   border: 5px solid black;
   width: 300px;
 }
+
+@media only screen and (max-width: 768px) {
+  .article img {
+    border: 5px solid white;
+    width: 250px;
+  }
+  .section-center {
+    grid-template-columns: repeat(2, 250px);
+    grid-gap: 150px;
+    justify-content: center;
+  }
+  .drink-name {
+    padding: 15px;
+    letter-spacing: 4px;
+    font-size: 1rem;
+  }
+  #input {
+    margin-top: 30px;
+    width: 100%;
+    font-size: 0.6rem;
+  }
+  .top-content {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  body {
+  }
+  .section-center {
+    grid-template-columns: repeat(1, 200px);
+    grid-gap: 50px;
+  }
+  .article img {
+    border: 5px solid white;
+    width: 200px;
+  }
+  .top-content {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .section-center {
+    grid-template-columns: repeat(2, 250px);
+    grid-gap: 250px;
+    justify-content: center;
+  }
+  #input {
+    margin-top: 30px;
+    width: 100%;
+    font-size: 0.8rem;
+  }
+  .top-content {
+    font-size: 30px;
+  }
+}
