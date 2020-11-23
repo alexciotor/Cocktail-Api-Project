@@ -1,4 +1,5 @@
 const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a'
+const baseURL ='https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 export const get =(selection)=>{
     const element =document.querySelector(selection)
     if(element){ 
@@ -42,7 +43,21 @@ catch{
 
 
 }
- 
+const form = get('form')
+ const input = get('input')
+form.addEventListener('keyup',(e)=>{
+
+    e.preventDefault()
+    const value = input.value
+   if(!value){
+       return fetchData(URL)
+    }
+    else(
+        fetchData(`${baseURL}${value}`)
+        )
+console.log(value);
+
+})
 
 export default fetchData
 window.addEventListener('DOMContentLoaded', fetchData(URL))
