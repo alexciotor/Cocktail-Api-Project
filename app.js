@@ -1,43 +1,48 @@
-//  const form = document.getElementById('form')
-
-//  const input= document.getElementById('input')
-// const hel  = document.getElementById('hel')
-
-//  form.addEventListener('keyup', (e)=>{
-//      console.log(input.value);
-//      hel.innerHTML = input.value
-//  })
-const grid = document.getElementById('grid')
-const article = document.getElementById('article')
-const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=s'
-const showContent= async()=>{
-try{
-    const data = await fetch(URL)
-    const response = await data.json()
-    const drink = response.drinks 
-let content =  drink.map(item=>{ 
-     return `<article id="article">
-    <div class="img">
-        <img src="${item.strDrinkThumb}" alt="">
-    </div>
-     
-        <div class="p-content">
-            <span>${item.strIngredient1}</span>
-        </div>
-        
-</article>`
+const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a'
+export const get =(selection)=>{
+    const element =document.querySelector(selection)
+    if(element){ 
+        return element
+    }
+    else{
+        throw new Error('No element selected')
+    }
+}
  
-     
-}).join('')  
-grid.innerHTML = content
+ 
+const fetchData = async(url) =>{
+
+try{
+const data = await fetch(url)
+const response = await data.json()
+const drink = response.drinks
+
+const section = get('.section-center')
+
+
+const drinks =  drink.map(item=>{
+
+    const {idDrink:id,strDrink:name, strDrinkThumb:image}=item
+    return ` <a href="single-drink.html"> <article class="article" data-id="${id}" > <img src="${image}" alt="">
+   
+    </article>
+     <span class="drink-name">${name}</span>
+    </a>`
+}).join('')
+ section.innerHTML = drinks
+  section.addEventListener('click', (e)=>{
+      const id = e.target.parentElement.dataset.id
+      localStorage.setItem('drink', id)
+   
+})
 }
-catch(error){
-    console.log(error);
+catch{
+    console.log('Error');
 }
 
+
 }
+ 
 
-window.addEventListener('DOMContentLoaded',showContent)
-
-
-
+export default fetchData
+window.addEventListener('DOMContentLoaded', fetchData(URL))
